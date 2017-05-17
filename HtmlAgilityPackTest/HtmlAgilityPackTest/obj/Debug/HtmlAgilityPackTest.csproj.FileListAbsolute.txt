@@ -1,0 +1,13 @@
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\HtmlAgilityPackTest.exe.config
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\HtmlAgilityPackTest.exe
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\HtmlAgilityPackTest.pdb
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\HtmlAgilityPack.dll
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\HtmlAgilityPack.pdb
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\HtmlAgilityPack.xml
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\obj\Debug\HtmlAgilityPackTest.csprojResolveAssemblyReference.cache
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\obj\Debug\HtmlAgilityPackTest.exe
+c:\users\billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\obj\Debug\HtmlAgilityPackTest.pdb
+C:\Users\Billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\EntityFramework.dll
+C:\Users\Billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\EntityFramework.xml
+C:\Users\Billy\documents\visual studio 2015\Projects\HtmlAgilityPackTest\HtmlAgilityPackTest\bin\Debug\EntityFramework.SqlServer.xml
