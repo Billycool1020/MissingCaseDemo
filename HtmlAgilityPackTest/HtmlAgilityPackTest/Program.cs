@@ -1,13 +1,10 @@
-﻿using HtmlAgilityPack;
-using HtmlAgilityPackTest.BLL;
+﻿using HtmlAgilityPackTest.BLL;
 using HtmlAgilityPackTest.DAL;
 using HtmlAgilityPackTest.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
 
 
 namespace HtmlAgilityPackTest
@@ -27,8 +24,8 @@ namespace HtmlAgilityPackTest
         }
         static void Start(object state)
         {
-            getNewCaseList();
-            if (DateTime.Now.Hour == 9 && flag == 0)
+            // getNewCaseList();
+           // if (DateTime.Now.Hour == 9 && flag == 0)
             {
                 SaveMissingCase();
                 flag++;
@@ -46,7 +43,9 @@ namespace HtmlAgilityPackTest
             Console.WriteLine(DateTime.Now.ToUniversalTime());
             List<MissingCaseModel> MissingList = new List<MissingCaseModel>();
             MissingCase mc = new MissingCase();
+            MissingList = mc.CheckMissingCase(MissingList);
             MissingList = mc.getMissingCase();
+           // MissingList = mc.CheckMissingCase(MissingList);
             Database data = new Database();
             data.Save(MissingList);
             Console.WriteLine(DateTime.Now.ToUniversalTime());

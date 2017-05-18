@@ -8,16 +8,13 @@ using System.Threading.Tasks;
 
 namespace HtmlAgilityPackTest.Model
 {
-    class MissingCaseModel
+    class MainLandForum
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string ThreadId { get; set; }
-        public bool IsInsetintoCAT { get; set; }
-        public DateTime PostDate { get; set; }
-        public string Title { get; set; }
-        public string Link { get; set; }
-        public string Product { get; set; }
+        public string Name { get; set; }
+        public string Url { get; set; }
+
     }
 }

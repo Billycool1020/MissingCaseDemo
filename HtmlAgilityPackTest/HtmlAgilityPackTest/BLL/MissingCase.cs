@@ -30,14 +30,29 @@ namespace HtmlAgilityPackTest.BLL
                         cmd.Connection = con;
                         sda.SelectCommand = cmd;
                         sda.Fill(dt);
-                        cmd.CommandText = "select t.QuestionId,t.Title,t.[Url],p.DisplayName,t.CreatedOn from [tbl_instances] as t join tbl_products as p on t.ProductId = p.Id where PlatformId = '1' and t.CreatedOn > GETDATE() - 1 order by t.CreatedOn desc";
-                        sda.SelectCommand = cmd;
-                        sda.Fill(dt);
                     }
                 }
             }
 
 
+
+
+
+            DataTable CAT = new DataTable();
+            string constr2 = ConfigurationManager.ConnectionStrings["CAT"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr2))
+            {
+                using (SqlCommand cmd = new SqlCommand("select cat_externalid from cat_thread where cat_externalcreatedon > GETDATE() - 1 order by cat_externalcreatedOn"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        sda.Fill(CAT);
+                    }
+                }
+            }
 
 
             var cat = new List<string>();
@@ -55,13 +70,28 @@ namespace HtmlAgilityPackTest.BLL
                         continue;
                     }
                     MissingCaseModel MC = new MissingCaseModel();
-                    MC.IfInsetintoCAT = false;
+                    MC.IsInsetintoCAT = false;
                     MC.ThreadId = t[0].ToString();
                     MC.Title = t[1].ToString();
                     MC.Link = t[2].ToString();
                     MC.Product = t[3].ToString();
                     MC.PostDate = (DateTime)t[4];
                     MissingList.Add(MC);
+                }
+            }
+            return MissingList;
+        }
+
+        public List<MissingCaseModel> CheckMissingCase(List<MissingCaseModel> list)
+        {
+            List<MissingCaseModel> MissingList = new List<MissingCaseModel>();
+            var date = DateTime.UtcNow.AddDays(-2);
+            var dblist = db.MissingCaseModels.Where(m => m.PostDate > date).Select(x => x.ThreadId).ToList();
+            foreach (MissingCaseModel mc in list)
+            {
+                if (!dblist.Contains(mc.ThreadId))
+                {
+                    MissingList.Add(mc);
                 }
             }
             return MissingList;

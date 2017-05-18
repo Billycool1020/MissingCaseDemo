@@ -10,7 +10,6 @@ namespace HtmlAgilityPackTest
 {
     class Email
     {
-
         public void Sendmail(List<Threads> List)
         {
             var threads = from l in List
@@ -20,14 +19,9 @@ namespace HtmlAgilityPackTest
             foreach(var thread in threads)
             {
                 string content= "New threads:<br /> ";
-                if (thread.Key.Contains("Asp"))
-                {
-                    content = content + "Asp.Net<br />";
-                }else
-                {
+              
                     content = content + thread.Key + "<br />";
-                }
-               
+              
                 foreach(Threads t in thread)
                 {
                     content = content + "<a href=" + t.Link + ">" + t.Title + "</a><br />";

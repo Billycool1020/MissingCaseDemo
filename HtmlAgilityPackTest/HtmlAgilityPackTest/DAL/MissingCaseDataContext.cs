@@ -17,5 +17,7 @@ namespace HtmlAgilityPackTest.DAL
         }
         public virtual DbSet<Threads> Threads { get; set; }
         public virtual DbSet<MissingCaseModel> MissingCaseModels { get; set; }
+        public virtual DbSet<Recipient> Recipients { get; set; }
+        public virtual DbSet<MainLandForum> MainLandForums { get; set; }
     }
 }
