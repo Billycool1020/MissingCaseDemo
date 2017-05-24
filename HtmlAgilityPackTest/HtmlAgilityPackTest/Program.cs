@@ -24,16 +24,26 @@ namespace HtmlAgilityPackTest
         }
         static void Start(object state)
         {
-            // getNewCaseList();
-           // if (DateTime.Now.Hour == 9 && flag == 0)
-            {
-                SaveMissingCase();
-                flag++;
-            }
-            if (DateTime.Now.Hour == 10 && flag == 1)
-            {
-                flag--;
-            }
+
+            // Email mail = new Email();
+
+            // mail.Sendmail();
+            // Console.WriteLine("Email send " + DateTime.Now.ToUniversalTime());
+            //getNewCaseList();
+            //if (DateTime.Now.Hour == 9 && flag == 0)
+            //{
+            MissingCase mc = new MissingCase();
+            int a =mc.CheckIsAnswer();
+            Console.WriteLine(a.ToString());
+
+
+            // SaveMissingCase();
+            //    flag++;
+            //}
+            //if (DateTime.Now.Hour == 10 && flag == 1)
+            //{
+            //    flag--;
+            //}
 
         }
 
@@ -43,9 +53,9 @@ namespace HtmlAgilityPackTest
             Console.WriteLine(DateTime.Now.ToUniversalTime());
             List<MissingCaseModel> MissingList = new List<MissingCaseModel>();
             MissingCase mc = new MissingCase();
-            MissingList = mc.CheckMissingCase(MissingList);
+            mc.recheck();
             MissingList = mc.getMissingCase();
-           // MissingList = mc.CheckMissingCase(MissingList);
+            MissingList = mc.CheckMissingCase(MissingList);
             Database data = new Database();
             data.Save(MissingList);
             Console.WriteLine(DateTime.Now.ToUniversalTime());
@@ -56,19 +66,22 @@ namespace HtmlAgilityPackTest
 
             List<Threads> List = new List<Threads>();
             Console.WriteLine(DateTime.Now.ToUniversalTime());
-            Msdn msdn = new Msdn();
-            List.AddRange(msdn.MsdnRoot());
+            //Msdn msdn = new Msdn();
+            //List.AddRange(msdn.MsdnRoot());
 
-            Asp asp = new Asp();
-            List.AddRange(asp.AspRoot());
+            MainLandMsdn MainLandmsdn = new MainLandMsdn();
+            List.AddRange(MainLandmsdn.MainLandMsdnRoot());
 
-            IIS iis = new IIS();
-            List.AddRange(iis.IISRoot());
+            //Asp asp = new Asp();
+            //List.AddRange(asp.AspRoot());
+
+            //IIS iis = new IIS();
+            //List.AddRange(iis.IISRoot());
 
             Console.WriteLine(DateTime.Now.ToUniversalTime());
             Email mail = new Email();
 
-            mail.Sendmail(List);
+           // mail.Sendmail(List);
             Console.WriteLine("Email send "+DateTime.Now.ToUniversalTime());
         }
     }

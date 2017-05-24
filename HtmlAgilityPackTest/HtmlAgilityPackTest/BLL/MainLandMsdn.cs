@@ -5,30 +5,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace HtmlAgilityPackTest
+namespace HtmlAgilityPackTest.BLL
 {
-    class Msdn
+    class MainLandMsdn
     {
-        public List<Threads> MsdnRoot()
+
+        public List<Threads> MainLandMsdnRoot()
         {
             MissingCaseDataContext db = new MissingCaseDataContext();
             List<Threads> list = new List<Threads>();
             var forums = db.MainLandForums.ToList();
-           
+
             foreach (var f in forums)
             {
-                for(var i = 1; i < 3; i++)
+                for (var i = 1; i < 3; i++)
                 {
-                    list.AddRange(MsdnSub(f.Url,f.Name, i));
+                    list.AddRange(MainLandMsdnSub(f.Url, f.Name, i));
                 }
 
             }
             return list;
         }
-        public List<Threads> MsdnSub(string Url,string Name, int page)
+        public List<Threads> MainLandMsdnSub(string Url, string Name, int page)
         {
             List<Threads> list = new List<Threads>();
             PostedTime pt = new PostedTime();
@@ -44,26 +44,27 @@ namespace HtmlAgilityPackTest
                 if (timenode.InnerText.Split(',').Length > 1)
                 {
                     time = timenode.InnerText.Split(',')[1];
-                }else
+                }
+                else
                 {
                     time = timenode.InnerText;
                 }
-                if (pt.RecentPost(time))
+                if (pt.RecentPostM(time))
                 {
                     Threads thread = new Threads();
-                    thread.Link = item.Attributes["href"].Value ;
-                    thread.PostDate = pt.Caltime(time);
+                    thread.Link = item.Attributes["href"].Value;
+                    thread.PostDate = pt.CaltimeM(time);
                     thread.Product = Name;
                     thread.ThreadId = item.Attributes["data-threadId"].Value;
                     thread.Title = item.InnerText;
                     list.Add(thread);
-
                     Console.WriteLine(item.InnerText);
-                    Console.WriteLine(pt.Caltime(time));
+                    Console.WriteLine(pt.CaltimeM(time));
                     Console.WriteLine();
-                } 
+                }
             }
             return list;
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPackTest.Model;
+﻿using HtmlAgilityPackTest.DAL;
+using HtmlAgilityPackTest.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +11,36 @@ namespace HtmlAgilityPackTest
 {
     class Email
     {
-        public void Sendmail(List<Threads> List)
+        public void Sendmail()
         {
-            var threads = from l in List
+            MissingCaseDataContext db = new MissingCaseDataContext();
+            DateTime firstday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            var threads = from l in db.MissingCaseModels
+                          where l.PostDate >= firstday
                           group l by l.Product into g
                           select g;
-            
-            foreach(var thread in threads)
+            //if (threads.Count > 0)
             {
-                string content= "New threads:<br /> ";
-              
-                    content = content + thread.Key + "<br />";
-              
-                foreach(Threads t in thread)
+
+
+                string content = "<br /> ";
+                content = content + "Missing Case:<br /> <table  border='1'><tr> <td>Title</td> <td>ID</td> <td style='width:100px'>IsAnswered</td> </tr>";
+
+                foreach (var thread in threads)
                 {
-                    content = content + "<a href=" + t.Link + ">" + t.Title + "</a><br />";
+                    content = content + "<tr><td colspan='3' >" + thread.Key + "</td></tr>";
+
+                    foreach (MissingCaseModel t in thread)
+                    {
+                        content = content + "<tr><td><a href=" + t.Link + ">" + t.Title + "</a></td>";
+                        content = content + "<td>" + t.ThreadId + "</td>";
+                        content = content + "<td>" + t.IsAnswered + "</td></tr>";
+                    }
+
                 }
+                content = content + "</table>";
                 Send("", content);
-            }  
+            }
         }
 
         public bool Send(string target, string content)
@@ -42,8 +55,9 @@ namespace HtmlAgilityPackTest
             //}
             mailMessage.To.Add(new MailAddress("billyliu.cool@hotmail.com"));
 
-            mailMessage.Subject = "New Threads";
+            mailMessage.Subject = "Missing Case " + DateTime.Now.Month + "/1~" + DateTime.Now.Month + "/" + DateTime.Now.Day;
             mailMessage.Body = content;
+            mailMessage.BodyEncoding = System.Text.Encoding.GetEncoding("utf-8");
             mailMessage.IsBodyHtml = true;
             try
             {

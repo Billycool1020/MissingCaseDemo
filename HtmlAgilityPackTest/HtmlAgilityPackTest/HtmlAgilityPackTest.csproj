@@ -76,6 +76,7 @@
     <Compile Include="BLL\Asp.cs" />
     <Compile Include="BLL\Database.cs" />
     <Compile Include="BLL\IIS.cs" />
+    <Compile Include="BLL\MainLandMsdn.cs" />
     <Compile Include="BLL\MissingCase.cs" />
     <Compile Include="DAL\MissingCaseDataContext.cs" />
     <Compile Include="BLL\Email.cs" />

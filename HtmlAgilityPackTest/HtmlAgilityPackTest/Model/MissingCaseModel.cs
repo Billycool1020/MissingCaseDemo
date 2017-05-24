@@ -15,6 +15,7 @@ namespace HtmlAgilityPackTest.Model
         public int Id { get; set; }
         public string ThreadId { get; set; }
         public bool IsInsetintoCAT { get; set; }
+        public bool IsAnswered { get; set; }
         public DateTime PostDate { get; set; }
         public string Title { get; set; }
         public string Link { get; set; }
